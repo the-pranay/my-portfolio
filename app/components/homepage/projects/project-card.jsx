@@ -1,6 +1,8 @@
 // @flow strict
 
 import * as React from 'react';
+import Link from 'next/link';
+import { FaCode, FaExternalLinkAlt } from 'react-icons/fa';
 
 function ProjectCard({ project }) {
 
@@ -64,6 +66,32 @@ function ProjectCard({ project }) {
           <div><span className="text-gray-400">{`};`}</span></div>
         </code>
       </div>
+      
+      {/* Code and Demo Links */}
+      {(project.code || project.demo) && (
+        <div className="flex justify-center gap-4 px-4 lg:px-8 py-4 border-t border-indigo-900">
+          {project.code && (
+            <Link 
+              href={project.code}
+              target="_blank"
+              className="flex items-center gap-2 bg-gradient-to-r from-violet-600 to-pink-500 text-white px-4 py-2 rounded-lg hover:from-violet-700 hover:to-pink-600 transition-all duration-300"
+            >
+              <FaCode size={16} />
+              <span>Code</span>
+            </Link>
+          )}
+          {project.demo && (
+            <Link 
+              href={project.demo}
+              target="_blank"
+              className="flex items-center gap-2 bg-gradient-to-r from-pink-500 to-violet-600 text-white px-4 py-2 rounded-lg hover:from-pink-600 hover:to-violet-700 transition-all duration-300"
+            >
+              <FaExternalLinkAlt size={16} />
+              <span>Live Demo</span>
+            </Link>
+          )}
+        </div>
+      )}
     </div>
   );
 };
